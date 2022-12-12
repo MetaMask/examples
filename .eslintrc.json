@@ -1,0 +1,4 @@
+{
+  "extends": "@metamask/eslint-config",
+  "rules": {}
+}
