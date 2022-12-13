@@ -36,6 +36,12 @@ const initialState: State = {
   balance: null,
 } as const
 
+/**
+ * It takes in a state and an action, and returns a new state
+ * @param {State} state - State - the current state of the reducer
+ * @param {Action} action - This is the action that is being dispatched.
+ * @returns The state of the metamask reducer.
+ */
 function metamaskReducer(state: State, action: Action): State {
   switch (action.type) {
     case 'connect': {
@@ -70,6 +76,11 @@ function metamaskReducer(state: State, action: Action): State {
   }
 }
 
+/**
+ * It creates a context object, and then returns a provider component that wraps the children and
+ * provides the context value
+ * @param {PropsWithChildren}  - PropsWithChildren<{}>
+ */
 const MetaMaskContext = React.createContext<
   { state: State; dispatch: Dispatch } | undefined
 >(undefined)
@@ -85,6 +96,10 @@ function MetaMaskProvider({ children }: PropsWithChildren) {
   )
 }
 
+/**
+ * It returns the value of the MetaMaskContext
+ * @returns The context object.
+ */
 function useMetaMask() {
   const context = React.useContext(MetaMaskContext)
   if (context === undefined) {
