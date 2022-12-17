@@ -2,13 +2,27 @@ This is an example of how to use the MetaMask SDK inside a Next.js application u
 
 ## Getting Started
 
-First, run the development server:
+First install dependencies
+
+```bash
+npm install
+// or
+yarn
+// or
+pnpm install
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
+// or
+yarn dev
+// or
+pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to start using the app.Thi
 
 ## Hooks:
 

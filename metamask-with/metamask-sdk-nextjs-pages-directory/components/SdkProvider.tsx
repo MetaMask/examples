@@ -11,6 +11,7 @@ export const SdkLayout: React.FC<PropsWithChildren> = ({ children }) => {
     if (typeof window !== undefined) {
       // start by checking if window.ethereum is present, indicating a wallet extension
       const ethereumProviderInjected = typeof window.ethereum !== 'undefined'
+
       // this could be other wallets so we can verify if we are dealing with metamask
       // using the boolean constructor to be explecit and not let this be used as a falsy value (optional)
       const isMetaMaskInstalled =

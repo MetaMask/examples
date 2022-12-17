@@ -11,6 +11,7 @@ export default function Home() {
 
   // we can use this to conditionally render the UI
   const showInstallMetaMask = status !== 'pageNotLoaded' && !isMetaMaskInstalled
+
   // we can use this to conditionally render the UI
   const showConnectButton =
     status !== 'pageNotLoaded' && isMetaMaskInstalled && !wallet

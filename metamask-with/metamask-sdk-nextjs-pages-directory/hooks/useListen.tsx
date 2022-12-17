@@ -1,4 +1,3 @@
-import { type } from 'os'
 import { useMetaMask } from './useMetaMask'
 
 function isAccountList(accounts: unknown): accounts is string[] {
@@ -14,7 +13,7 @@ export const useListen = () => {
   return () => {
     window.ethereum.on('accountsChanged', async (newAccounts: string[]) => {
       if (isAccountList(newAccounts) && newAccounts.length > 0) {
-        // uppon receiving a new wallet, we'll request again the balance to synchronize the UI.
+        // upon receiving a new wallet, we'll request the balance to synchronize the UI again.
         const newBalance = await window.ethereum!.request({
           method: 'eth_getBalance',
           params: [newAccounts[0], 'latest'],
