@@ -107,7 +107,8 @@ export const instantiateSdk = () => {
         and allow you to use the SDK API to interact with the MetaMask mobile
         app. If users are using the MetaMask extension, the SDK will simply use
         the regular API. Otherwise users will see a prompt to connect with a QR
-        code to the MetaMask mobile app.
+        code to the MetaMask mobile app when requesting accounts with{' '}
+        <code>eth_requestAccounts</code>.
       </p>
     </ExplainerLayout>
   )
