@@ -1,15 +1,27 @@
-import { ExplainerLayout } from '../components/Layout'
-import { useListen } from '../hooks/useListen'
-import { useMetaMask } from '../hooks/useMetaMask'
-import styles from '../styles/Home.module.css'
+import { ExplainerLayout } from './components/Layout'
+import { useListen } from './hooks/useListen'
+import { type MetaMaskInpageProvider } from '@metamask/providers'
+import { MetaMaskProvider, useMetaMask } from './hooks/useMetaMask'
+import { SdkLayout } from './components/SdkProvider'
 
-export default function Home() {
+export default function App() {
+  return (
+    <MetaMaskProvider>
+      <SdkLayout>
+        <Explainer />
+      </SdkLayout>
+    </MetaMaskProvider>
+  )
+}
+
+function Explainer() {
   const {
     dispatch,
     state: { status, isMetaMaskInstalled, wallet },
   } = useMetaMask()
   const listen = useListen()
 
+  console.log('hello')
   // we can use this to conditionally render the UI
   const showInstallMetaMask = status !== 'pageNotLoaded' && !isMetaMaskInstalled
 
@@ -23,15 +35,15 @@ export default function Home() {
   // can be passed to an onclick handler
   const handleConnect = async () => {
     dispatch({ type: 'loading' })
-    const accounts = await window.ethereum.request({
+    const accounts = (await window.ethereum.request({
       method: 'eth_requestAccounts',
-    })
+    })) as string[]
 
     if (accounts.length > 0) {
-      const balance = await window.ethereum!.request({
+      const balance = (await window.ethereum!.request({
         method: 'eth_getBalance',
         params: [accounts[0], 'latest'],
-      })
+      })) as string
       dispatch({ type: 'connect', wallet: accounts[0], balance })
 
       // we can register an event listener for changes to the users wallet
@@ -43,9 +55,10 @@ export default function Home() {
   const handleDisconnect = () => {
     dispatch({ type: 'disconnect' })
   }
+
   return (
     <ExplainerLayout
-      title="MetaMask SDK with Next.js"
+      title="MetaMask SDK with Create React App"
       caption={
         <>
           The <a href="https://metamask.io/sdk/">MetaMask SDK provides</a> a
@@ -56,11 +69,6 @@ export default function Home() {
         </>
       }
     >
-      <style jsx>{`
-        a {
-          text-decoration-line: underline;
-        }
-      `}</style>
       <p>
         MetaMask provides an API that allows developers to build applications
         that can integrate with the MetaMask extension and interact with the
@@ -95,13 +103,6 @@ export default function Home() {
 import MetaMaskSDK from "@metamask/sdk";
 
 export const instantiateSdk = () => {
-  
-  // in case we are rendering on the server,  
-  // we don't want to instantiate the SDK when window is not defined
-  if (typeof window === 'undefined') {
-    return null;
-  }
-
   new MetaMaskSDK();
 };`}
           </code>
