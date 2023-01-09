@@ -1,4 +1,4 @@
-This is an example of how to use the MetaMask SDK inside a Next.js application using the pages directory.
+This is an example of how to use the MetaMask SDK inside a Create-React-App application.
 
 ## Getting Started
 
@@ -15,11 +15,11 @@ pnpm install
 Then run the development server:
 
 ```bash
-npm run dev
+npm run start
 // or
-yarn dev
+yarn start
 // or
-pnpm dev
+pnpm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to start using the app.Thi
@@ -28,8 +28,8 @@ Open [http://localhost:3000](http://localhost:3000) to start using the app.Thi
 
 This includes some useful hooks to get you started quickly
 
-- [useListen](./hooks/useListen.tsx) - Listen for events from the MetaMask provider.
-- [useMetaMask](./hooks/useMetaMask.tsx) - Get the wallet information. Implemented in a reducer with context
+- [useListen](./src/hooks/useListen.tsx) - Listen for events from the MetaMask provider.
+- [useMetaMask](./src/hooks/useMetaMask.tsx) - Get the wallet information. Implemented in a reducer with context
 
 These hooks are implemented in the [pages/index.tsx](/pages/index.tsx) file. You can use them as a reference.
 
